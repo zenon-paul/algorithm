@@ -1,6 +1,4 @@
 typedef struct data{
-	int size;
-	int tail;
 	int index;
 	int num;
 }d_num;
@@ -25,9 +23,12 @@ int chmax(int a,int b){
 	}
 	else return 0;
 }
+void swap(int* x,int* y){
+	int rest = *x;
+	*x = *y;
+	*y = rest;
+}
 void make_heap(d_num* x,int broad){
-	int restnum;
-	int restind;
 	for(int i=broad;i>0;)
 	{
 		if(chmin((x+i)->num,(x+(i-1)/2)->num))
@@ -36,21 +37,13 @@ void make_heap(d_num* x,int broad){
 		}
 		else
 		{
-			restnum=(x+(i-1)/2)->num;
-			restind=(x+(i-1)/2)->index;
-			
-			(x+(i-1)/2)->num=(x+i)->num;
-			(x+(i-1)/2)->index=(x+i)->index;
-			
-			(x+i)->num=restnum;
-			(x+i)->index=restind;
+			swap(&((x+(i-1)/2)->num),&((x+i)->num));
+			swap(&((x+(i-1)/2)->index),&((x+i)->index));
 			i=(i-1)/2;
 		}
 	}
 }
 void remake_heap(d_num* x,int broad){
-	int prchild;
-	int prindex;
 	for(int i=0;(2*i+1)<=broad;)
 	{
 		if(2*i+2<=broad){
@@ -58,14 +51,8 @@ void remake_heap(d_num* x,int broad){
 			{
 				if(chmin((x+i)->num,(x+2*i+2)->num))
 				{
-					prchild=(x+2*i+2)->num;
-					prindex=(x+2*i+2)->index;
-			
-					(x+2*i+2)->num=(x+i)->num;
-					(x+2*i+2)->index=(x+i)->index;
-			
-					(x+i)->num=prchild;
-					(x+i)->index=prindex;
+					swap(&((x+2*i+2)->num),&((x+i)->num));
+					swap(&((x+2*i+2)->index),&((x+i)->index));
 					i=2*i+2;
 				}
 				else
@@ -77,14 +64,8 @@ void remake_heap(d_num* x,int broad){
 			{
 				if(chmin((x+i)->num,(x+2*i+1)->num))
 				{
-					prchild=(x+2*i+1)->num;
-					prindex=(x+2*i+1)->index;
-			
-					(x+2*i+1)->num=(x+i)->num;
-					(x+2*i+1)->index=(x+i)->index;
-			
-					(x+i)->num=prchild;
-					(x+i)->index=prindex;
+					swap(&((x+2*i+1)->num),&((x+i)->num));
+					swap(&((x+2*i+1)->index),&((x+i)->index));
 					i=2*i+1;
 				}
 				else
@@ -97,14 +78,8 @@ void remake_heap(d_num* x,int broad){
 		else
 		{
 			if(chmin((x+i)->num,(x+2*i+1)->num)){
-					prchild=(x+2*i+1)->num;
-					prindex=(x+2*i+1)->index;
-			
-					(x+2*i+1)->num=(x+i)->num;
-					(x+2*i+1)->index=(x+i)->index;
-			
-					(x+i)->num=prchild;
-					(x+i)->index=prindex;
+					swap(&((x+2*i+1)->num),&((x+i)->num));
+					swap(&((x+2*i+1)->index),&((x+i)->index));
 					i=2*i+1;
 				}
 				else
@@ -120,16 +95,8 @@ int add_num_to_heap(d_num* x,int tail){
 	return tail;
 }
 int recon_heap(d_num* x,int tail){
-	int restnum;
-	int restind;
-	restnum=(x+tail-1)->num;
-	restind=(x+tail-1)->index;
-	
-	(x+tail-1)->num=x->num;
-	(x+tail-1)->index=x->index;
-	
-	x->num=restnum;
-	x->index=restind;
+	swap(&((x+tail-1)->num),&(x->num));
+	swap(&((x+tail-1)->index),&(x->index));
 	tail--;
 	remake_heap(x,tail-1);
 	return tail;
