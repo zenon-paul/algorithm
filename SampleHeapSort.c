@@ -1,13 +1,9 @@
-#include <stdio.h>
-#include <stdlib.h>
-#define lim 100
-#define sss 8
 typedef struct data{
+	int size;
+	int tail;
 	int index;
 	int num;
 }d_num;
-d_num* nums;
-int* date;
 void in(d_num* x,int* y,int size){
 	for(int i=0;i<size;i++)
 	{
@@ -138,44 +134,13 @@ int recon_heap(d_num* x,int tail){
 	remake_heap(x,tail-1);
 	return tail;
 }
-int main(){
-	int size=sss;
-	nums=(d_num*)malloc(sizeof(d_num )*size);
-	if(nums==NULL)
-	{
-		printf("FAIL!!");
-		return 0;
-	}
-	date=(int*)malloc(sizeof(int)*size);
-	if(date==NULL)
-	{
-		printf("FAIL!!");
-		return 0;
-	}
-	for(int i=0;i<size;i++)
-	{
-		printf(" %d:%d ",i,date[i]=(rand()%100));
-	}
-	printf("\n------------------------------------------------\n");
-	printf("結果\n");
-	in(nums, date,size);
-	for(int i=0;i<size;i++)
-	{
-		(nums+i)->num=date[i];
-	}
+void sort(d_num* x,int size){
 	for(int i=0;i<size;)
 	{
-		i=add_num_to_heap(nums,i);
+		i=add_num_to_heap(x,i);
 	}
 	for(int i=size;i>1;)
 	{
-		i=recon_heap(nums,i);
+		i=recon_heap(x,i);
 	}
-	for(int i=0;i<size;i++)
-	{
-		printf
-		(" %d:%d",(nums+i)->index,(nums+i)->num);
-	}
-	free(nums);
-	free(date);
 }
