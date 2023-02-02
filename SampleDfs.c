@@ -25,15 +25,11 @@ void dfs(int seen[nood],int seed){
 	path1[count1]=seed;
 	count1++;
 	for(int i=0;i<lim;i++){
-        if(graph[seed][i]!=-1)
+       　　　　 if(graph[seed][i]!=-1)
 		{
 			if(seen[graph[seed][i]]==0){
 				dfs(seen,graph[seed][i]);
 			}
-		}
-		else
-		{
-			break;
 		}
 	}
 	path2[count2]=seed;
