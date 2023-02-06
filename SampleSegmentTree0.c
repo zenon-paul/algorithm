@@ -19,7 +19,7 @@ int* init_segtree(int* x, int size, int* n) {
 	*n = leavs;
 	printf("%d\n",leavs);
 	segtree = (int*)malloc(sizeof(size)*(2 * leavs - 1));
-	for (int i = 0; i < (sizeof(size)*(2 * leavs - 1)); i++)
+	for (int i = 0; i < (2 * leavs - 1); i++)
 	{
 		segtree[i] = INF;
 	}
