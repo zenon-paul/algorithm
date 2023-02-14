@@ -1,0 +1,97 @@
+#include"lib_1.h"
+
+int q_put(d_queue* x,int input) {
+
+         if (((x->tail + 2) % x->leng) == (x->head)) {//((x->tail + 2) % x->leng) >= (x->head)この場合値が二度と入らなくなってしまうので==にしよう
+
+                  return 0;
+
+         }
+
+         x->body[(x->tail + 1) % x->leng] = input;
+
+         x->tail++;
+
+         return 1;
+
+}
+
+int q_get(d_queue* x,int* result) {
+
+         if (((x->tail + 1) % x->leng) == x->head) {
+
+                  return 0;
+
+         }
+
+         *result = x->body[(x->head) % x->leng];
+
+         x->head++;
+
+         return 1;
+
+}
+
+void iq( d_queue* x, int* b, int l) {
+
+         x->leng = l;
+
+         x->tail = -1;
+
+         x->head = 0;
+
+         x->body = b;
+
+}
+
+//-------------------------------------------------
+
+int q2_put(d2_queue* x,int input,int inputind) {
+
+         if (((x->tail + 2) % x->leng) == (x->head)) {//((x->tail + 2) % x->leng) >= (x->head)この場合値が二度と入らなくなってしまうので==にしよう
+
+                  return 0;
+
+         }
+
+         x->body[(x->tail + 1) % x->leng] = input;
+
+         x->index[(x->tail + 1) % x->leng] = inputind;
+
+         x->tail++;
+
+         return 1;
+
+}
+
+int q2_get(d2_queue* x,int* result,int* resultind) {
+
+         if (((x->tail + 1) % x->leng) == x->head) {
+
+                  return 0;
+
+         }
+
+         *result = x->body[(x->head) % x->leng];
+
+         *resultind = x->index[(x->head) % x->leng];
+
+         x->head++;
+
+         return 1;
+
+}
+
+void iq2( d2_queue* x, int* b,int* i, int l) {
+
+         x->leng = l;
+
+         x->tail = -1;
+
+         x->head = 0;
+
+         x->body = b;
+
+         x->index = i;
+
+}
