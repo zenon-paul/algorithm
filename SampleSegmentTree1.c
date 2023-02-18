@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <stdio.h>//遅延評価付き
 #include <stdlib.h>
 #include <limits.h>
 #define SIZE 12
