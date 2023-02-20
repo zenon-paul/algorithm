@@ -151,3 +151,4 @@ int main(){
 	disp(&property);
 	printf("\n");
 	free(property.body);
+}
