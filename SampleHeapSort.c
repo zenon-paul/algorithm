@@ -109,5 +109,5 @@ void sort(d_num* x,int size){
 	for(int i=size;i>1;)
 	{
 		i=recon_heap(x,i);
-	}
+	}//
 }
