@@ -6,7 +6,7 @@ struct list_node {
     int num1;
     int num2;
     int num3;
-    char* sent;
+    const char* sent;
     struct list_node* next;
     struct list_node* prev;
 };
