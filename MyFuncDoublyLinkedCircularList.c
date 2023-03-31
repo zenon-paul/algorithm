@@ -1,4 +1,4 @@
-#include"list.h"
+#include"MyFuncDoublyLinkedCircularList.h"
 void il(d_list* x) {
 	x->head = NULL;
 	x->elm = 0;//elmは個数
@@ -16,7 +16,7 @@ struct list_node* get_elm_addres(d_list* x, int index) {
 	}
 	return rest;
 }
-void substitute(d_list* x, int index, int n1, int n2, int n3, char* s) {
+void substitute(d_list* x, int index, int n1, int n2, int n3,const char* s) {
 	if (x->head == NULL)
 	{
 		return;
@@ -29,7 +29,7 @@ void substitute(d_list* x, int index, int n1, int n2, int n3, char* s) {
 	rest->sent = s;
 }
 int disp(d_list* x);
-int add_substitute(d_list* x, int index, int n1, int n2, int n3, char* s) {
+int add_substitute(d_list* x, int index, int n1, int n2, int n3,const char* s) {
 	struct list_node* added;
 	added = (struct list_node*)malloc(sizeof(struct list_node));
 	if (x->head == NULL)
