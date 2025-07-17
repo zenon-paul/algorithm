@@ -1,5 +1,5 @@
 ﻿#include <stdio.h>
-#include "queue.h"
+
 int count_char(char* x){
 	int i = 0;
 	while(x[i] != '\0')
